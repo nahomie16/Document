@@ -26,7 +26,6 @@ namespace Document
             String line;
             try
             {
-                
                 //Pass the file path and file name to the StreamWriter constructor
                 StreamWriter sw = new StreamWriter(newFileName);
 
@@ -37,22 +36,23 @@ namespace Document
 
                 //close the file
                 sw.Close();
-                // "[filename] was successfully saved. The document contains [count] characters." and exit. [filename] and[count] are placeholders for the filename of the document and the number of characters it contains.
 
                 StreamReader sr = new StreamReader(newFileName);
                 line = sr.ReadLine();
                 int count = 0;   /// counts numbers of lines 
                 String[] words_from_file = new String[10];
-
-                while (line != null){
-                    Console.WriteLine(line);
-                    count += 1;
+               
+                while (line != null) 
+                {
                     line = sr.ReadLine();
-                
+                    count++;
+
                 }
+                Console.WriteLine($"{newFileName} was successfully saved and it contains {count} lines");
+
                 //close the file
                 sr.Close();
-                Console.WriteLine($"{newFileName} was successfully saved and it contains {count} lines");
+
 
             }
             catch (Exception e)
