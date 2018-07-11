@@ -48,7 +48,7 @@ namespace Document
                     count++;
 
                 }
-                Console.WriteLine($"{newFileName} was successfully saved and it contains {count} lines");
+                Console.WriteLine($"{newFileName} was successfully saved  The document contains {contents.Length} characters.");
 
                 //close the file
                 sr.Close();
