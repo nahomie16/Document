@@ -2,11 +2,10 @@ using System;
 using System.IO;
 
 
-namespace Document
+namespace DocumentMerger
 {
     class Program
     {
-        int number = 9;
 
         static void Main(string[] args)
         {
@@ -14,7 +13,7 @@ namespace Document
 
             String newFileName;
             String filename;
-            String user_continue;
+
             do
             {
                 Console.WriteLine("Enter Document name: ");
