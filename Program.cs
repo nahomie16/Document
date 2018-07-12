@@ -53,6 +53,9 @@ namespace Document
                 string merge = filename + filename2;
                 string mergeTxt = merge + ".txt";
 
+                string contents = " ";                  // Stores the contents of merged files 
+
+
                 String line2;
                 try
                 {
@@ -75,8 +78,8 @@ namespace Document
                        //Console.WriteLine(line);
                         sw3.WriteLine(line);
                         IsEmpty = false;
+                        contents += line; 
                     }
-
 
 
                     while ((line2 = sr2.ReadLine()) != null)      // Read second file 
@@ -84,6 +87,7 @@ namespace Document
                        //Console.WriteLine(line2);
                         sw3.WriteLine(line2);
                         IsEmpty2 = false;
+                        contents += line2;
 
                     }
 
@@ -92,12 +96,14 @@ namespace Document
 
                         Console.WriteLine("Both of these files are empty");
                     }
-                    // Console.WriteLine($"{newFileName} was successfully saved  The document contains {contents.Length} characters.");
 
                     //close the file
                     sr.Close();
                     sw3.Close();
                     sr2.Close();
+
+
+                    Console.WriteLine($"{newFileName} was successfully saved  The document contains {contents.Length} characters.");
 
 
                 }
