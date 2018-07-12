@@ -1,121 +1,122 @@
 using System;
 using System.IO;
-using System.Text;
 
 
 namespace Document
 {
     class Program
     {
+        int number = 9;
+
         static void Main(string[] args)
         {
             Console.WriteLine("Document merger\n");
 
             String newFileName;
             String filename;
-
-            Console.WriteLine("Enter Document name: ");
-            filename = Console.ReadLine();
-            newFileName = filename + ".txt";
-
-
-            while (!File.Exists(newFileName))
+            String user_continue;
+            do
             {
-
-                Console.WriteLine("File does not exist.");
-
                 Console.WriteLine("Enter Document name: ");
                 filename = Console.ReadLine();
                 newFileName = filename + ".txt";
 
 
-            }
+             while (!File.Exists(newFileName))
+                {
 
-            Console.WriteLine("Enter Second Document name: ");
-            String filename2 = Console.ReadLine();
-            String newFileName2 = filename2 + ".txt"; // for the second file
+                    Console.WriteLine("File does not exist.");
+                    Console.WriteLine("Enter Document name: ");
+                    filename = Console.ReadLine();
+                    newFileName = filename + ".txt";
 
 
-            while (!File.Exists(newFileName2))
-            {
+                }
 
-                Console.WriteLine("File does not exist.");
 
                 Console.WriteLine("Enter Second Document name: ");
-                filename2 = Console.ReadLine();
-                newFileName2 = filename2 + ".txt";
-            }
-
-     
-            string merge = filename + filename2;
-            string mergeTxt = merge + ".txt";
+                String filename2 = Console.ReadLine();
+                String newFileName2 = filename2 + ".txt"; // for the second file
 
 
-            String line2;
-            try
-            {
+                while (!File.Exists(newFileName2))
+                {
 
+                    Console.WriteLine("File does not exist.");
 
-                StreamWriter sw3 = new StreamWriter(mergeTxt);      // writing to the merged file
-
-
-
-                //close the file
-
-
-                StreamReader sr = new StreamReader(newFileName);        // reading to the first file
-                StreamReader sr2 = new StreamReader(newFileName2);      // reading  to the second file
-
-          
-                int count = 0;   /// counts numbers of lines 
-
-                String line;
-                bool IsEmpty = true;            // Checks if the first file is empty
-                bool IsEmpty2 = true;           // Checks if the second file is empty
-
-
-                while ((line = sr.ReadLine()) != null)                 {  // Read first file 
-                    //Console.WriteLine(line);
-                    Console.WriteLine("File is not Empty\n\n\n\n\n\n\n\n");
-                    sw3.WriteLine(line);
-                    IsEmpty = false;
+                    Console.WriteLine("Enter Second Document name: ");
+                    filename2 = Console.ReadLine();
+                    newFileName2 = filename2 + ".txt";
                 }
-               
 
 
-                while ((line2 = sr2.ReadLine()) != null)      // Read second file 
-                {  // Read first file 
-                    //Console.WriteLine(line2);
-                    sw3.WriteLine(line2);
-                    IsEmpty2 = false;
+                string merge = filename + filename2;
+                string mergeTxt = merge + ".txt";
 
-                } 
+                String line2;
+                try
+                {
 
-                if (IsEmpty && IsEmpty2){
 
-                    Console.WriteLine("Both of these files are empty");
+                    StreamWriter sw3 = new StreamWriter(mergeTxt);      // writing to the merged file
+
+
+                    StreamReader sr = new StreamReader(newFileName);        // reading to the first file
+                    StreamReader sr2 = new StreamReader(newFileName2);      // reading  to the second file
+
+
+                    String line;
+                    bool IsEmpty = true;            // Checks if the first file is empty
+                    bool IsEmpty2 = true;           // Checks if the second file is empty
+
+
+                    while ((line = sr.ReadLine()) != null)
+                    {  // Read first file 
+                       //Console.WriteLine(line);
+                        sw3.WriteLine(line);
+                        IsEmpty = false;
+                    }
+
+
+
+                    while ((line2 = sr2.ReadLine()) != null)      // Read second file 
+                    {  // Read first file 
+                       //Console.WriteLine(line2);
+                        sw3.WriteLine(line2);
+                        IsEmpty2 = false;
+
+                    }
+
+                    if (IsEmpty && IsEmpty2)
+                    {
+
+                        Console.WriteLine("Both of these files are empty");
+                    }
+                    // Console.WriteLine($"{newFileName} was successfully saved  The document contains {contents.Length} characters.");
+
+                    //close the file
+                    sr.Close();
+                    sw3.Close();
+                    sr2.Close();
+
+
                 }
-                // Console.WriteLine($"{newFileName} was successfully saved  The document contains {contents.Length} characters.");
+                catch (Exception e)
+                {
+                    Console.WriteLine("Exception: " + e.Message);
 
-                //close the file
-                sr.Close();
-                sw3.Close();
-                sr2.Close(); 
+                }
 
+                finally
+                {
+                    Console.WriteLine("Executing finally block.");
+                }
+
+                Console.WriteLine("Would like to merge two more files: ");
 
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
 
-            }
-
-            finally
-            {
-                Console.WriteLine("Executing finally block.");
-            }
-
-
+            while (Console.ReadLine().ToLower().StartsWith('y')); 
         }
     }
 }
