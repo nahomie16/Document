@@ -1,5 +1,5 @@
-# Document
-This Document project has file reads, prompt the user for the content that is to be in the document, append .txt to the name and use it as the file name and count the lines. 
+# Document Merger
+Created two files and merged the two file names and append .txt to the end. Also check if those files exits or not. 
 ## Running 
  <br> mcs Program.cs </br>
   mono Program.exe 
