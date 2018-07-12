@@ -56,33 +56,45 @@ namespace Document
             {
 
 
-                StreamWriter sw3 = new StreamWriter(mergeTxt); // writing to the merged file
+                StreamWriter sw3 = new StreamWriter(mergeTxt);      // writing to the merged file
 
 
 
                 //close the file
 
 
-                StreamReader sr = new StreamReader(newFileName); // reading to the first file
-                StreamReader sr2 = new StreamReader(newFileName2); // reading  to the second file
+                StreamReader sr = new StreamReader(newFileName);        // reading to the first file
+                StreamReader sr2 = new StreamReader(newFileName2);      // reading  to the second file
 
           
                 int count = 0;   /// counts numbers of lines 
 
                 String line;
+                bool IsEmpty = true;            // Checks if the first file is empty
+                bool IsEmpty2 = true;           // Checks if the second file is empty
 
 
                 while ((line = sr.ReadLine()) != null)                 {  // Read first file 
                     //Console.WriteLine(line);
-                    sw3.WriteLine(line); 
+                    Console.WriteLine("File is not Empty\n\n\n\n\n\n\n\n");
+                    sw3.WriteLine(line);
+                    IsEmpty = false;
                 }
+               
 
 
                 while ((line2 = sr2.ReadLine()) != null)      // Read second file 
                 {  // Read first file 
                     //Console.WriteLine(line2);
                     sw3.WriteLine(line2);
+                    IsEmpty2 = false;
+
                 } 
+
+                if (IsEmpty && IsEmpty2){
+
+                    Console.WriteLine("Both of these files are empty");
+                }
                 // Console.WriteLine($"{newFileName} was successfully saved  The document contains {contents.Length} characters.");
 
                 //close the file
