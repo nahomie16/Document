@@ -20,8 +20,8 @@ namespace Document
 
 
             while (!File.Exists(newFileName))
-            { 
-               
+            {
+
                 Console.WriteLine("File does not exist.");
 
                 Console.WriteLine("Enter Document name: ");
@@ -30,49 +30,65 @@ namespace Document
 
 
             }
-          
 
             Console.WriteLine("Enter Second Document name: ");
             String filename2 = Console.ReadLine();
-
-            Console.WriteLine("Enter Contents: ");
-            String contents = Console.ReadLine();
-
-
             String newFileName2 = filename2 + ".txt"; // for the second file
 
-            Console.WriteLine(newFileName);
-            Console.WriteLine(newFileName2);
 
-            String line;
+            while (!File.Exists(newFileName2))
+            {
+
+                Console.WriteLine("File does not exist.");
+
+                Console.WriteLine("Enter Second Document name: ");
+                filename2 = Console.ReadLine();
+                newFileName2 = filename2 + ".txt";
+            }
+
+     
+            string merge = filename + filename2;
+            string mergeTxt = merge + ".txt";
+
+
+            String line2;
             try
             {
-                //Pass the file path and file name to the StreamWriter constructor
-                StreamWriter sw = new StreamWriter(newFileName);
-                StreamWriter sw2 = new StreamWriter(newFileName2); // writing to the second file
 
-                // Write the first line of text
-                sw.Write(contents);
-                sw.Write("\n");
+
+                StreamWriter sw3 = new StreamWriter(mergeTxt); // writing to the merged file
+
+
 
                 //close the file
-                sw.Close();
 
-                StreamReader sr = new StreamReader(newFileName);
-                line = sr.ReadLine();
+
+                StreamReader sr = new StreamReader(newFileName); // reading to the first file
+                StreamReader sr2 = new StreamReader(newFileName2); // reading  to the second file
+
+          
                 int count = 0;   /// counts numbers of lines 
-                String[] words_from_file = new String[10];
 
-                while (line != null)
-                {
-                    line = sr.ReadLine();
-                    count++;
+                String line;
 
+
+                while ((line = sr.ReadLine()) != null)                 {  // Read first file 
+                    //Console.WriteLine(line);
+                    sw3.WriteLine(line); 
                 }
-                Console.WriteLine($"{newFileName} was successfully saved  The document contains {contents.Length} characters.");
+
+
+                while ((line2 = sr2.ReadLine()) != null)      // Read second file 
+                {  // Read first file 
+                    //Console.WriteLine(line2);
+                    sw3.WriteLine(line2);
+                } 
+                // Console.WriteLine($"{newFileName} was successfully saved  The document contains {contents.Length} characters.");
 
                 //close the file
                 sr.Close();
+                sw3.Close();
+                sr2.Close(); 
 
 
             }
